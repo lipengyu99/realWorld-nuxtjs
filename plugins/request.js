@@ -23,6 +23,11 @@ export const deleteMethod = ( url, data ) => {
         request.delete(url,data).then((res)=>resolve(res.data)).catch((e)=>reject(e))
     } )
 }
+export const put = ( url, data ) => {
+    return new Promise( ( resolve, reject ) => {
+        request.put( url, data ).then( ( res ) => { resolve( res.data ) } ).catch( ( error ) => reject( error ) )
+    } )
+}
 export default ({store})=>{
     request.interceptors.request.use(function (config){
         const { user } = store.state

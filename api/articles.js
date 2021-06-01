@@ -27,3 +27,13 @@ export const getArticle = slug => {
 export const getComments = slug => {
     return get( `/api/articles/${slug}/comments`)
 }
+
+// 添加文章
+export const addArticle = params => {
+    return post( '/api/articles',params )
+}
+
+// // 更新文章
+// export const addArticle = params => {
+//     return put( `/api/articles/${params.slug}`, params )
+// },

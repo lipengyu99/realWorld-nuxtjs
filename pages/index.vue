@@ -2,7 +2,7 @@
   <div class="home-page">
     <div class="banner">
       <div class="container">
-        <h1 class="logo-font">conduit-test</h1>
+        <h1 class="logo-font">conduit</h1>
         <p>A place to share your knowledge.</p>
       </div>
     </div>
@@ -97,13 +97,13 @@
         <div class="col-md-3">
           <div class="sidebar">
             <p>Popular Tags</p>
-            <div class="tag-list" v-for="item in tagData.tags" :key="item">
+            <span class="tag-list" v-for="(item,index) in tagData.tags" :key="item">
               <nuxt-link
                 class="tag-pill tag-default"
                 :to="{ path: '/', query: { tag: item, page: 1 } }"
                 >{{ item }}</nuxt-link
               >
-            </div>
+            </span>
           </div>
         </div>
       </div>

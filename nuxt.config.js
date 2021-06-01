@@ -34,6 +34,11 @@ export default {
                             component: resolve( __dirname, 'pages/editor/index.vue' )
                         },
                         {
+                            name: 'editor',
+                            path: '/editor/:slug',
+                            component: resolve( __dirname, 'pages/editor/index.vue' )
+                        },
+                        {
                             name: 'profile',
                             path: '/profile/:username',
                             component: resolve( __dirname, 'pages/profile/index.vue' )

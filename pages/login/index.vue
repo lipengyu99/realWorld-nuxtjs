@@ -91,7 +91,6 @@ export default {
       }
       action
         .then((res) => {
-          console.log(res);
           this.$store.commit('setUser',res.user)
           Cookie.set('user',res.user)
           this.$router.push('/')
