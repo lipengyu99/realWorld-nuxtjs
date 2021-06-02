@@ -42,18 +42,19 @@
       :class="{
         active: article.favorited,
       }"
-      @click="onclickfavorited"
+      @click="onclickfavorited(article)"
     >
       <!-- <i class="ion-heart"></i> -->
       &nbsp;
       {{ favoritedText }}
-      <span v-if="user" class="counter">({{ article.favoritesCount }})</span>
+      <!-- <span v-if="user" class="counter">({{ article.favoritesCount }})</span> -->
     </button>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { deleteArticle } from "../../../api/articles";
 export default {
   name: "ArticleMeta",
   props: {
@@ -81,6 +82,16 @@ export default {
         this.$router.push(`/editor/${article.slug}`)
       }
     },
+    onclickfavorited(article){
+      if (!this.user) {
+        this.$router.push('register')
+      }else{
+        //删除文章跳转首页
+        deleteArticle(article.slug).then((res)=>{
+          this.$router.push('/')
+        })
+      }
+    }
   },
 };
 </script>

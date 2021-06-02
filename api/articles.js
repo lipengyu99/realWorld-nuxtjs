@@ -1,4 +1,4 @@
-import { post, get, deleteMethod} from "../plugins/request";
+import { post, get, deleteMethod,put } from "../plugins/request";
 //首页全部内容信息
 export const getAllArticles = ( params ) => {
     params = params || {}
@@ -20,20 +20,34 @@ export const deleteFavorite = ( slug ) => {
 }
 //获取文章详情
 export const getArticle = slug => {
-    return get( `/api/articles/${slug}`)
+    return get( `/api/articles/${slug}` )
 }
 
 // 获取文章评论
 export const getComments = slug => {
-    return get( `/api/articles/${slug}/comments`)
+    return get( `/api/articles/${slug}/comments` )
 }
 
 // 添加文章
 export const addArticle = params => {
-    return post( '/api/articles',params )
+    return post( '/api/articles', params )
 }
 
-// // 更新文章
-// export const addArticle = params => {
-//     return put( `/api/articles/${params.slug}`, params )
-// },
+// 更新文章
+export const updateArticle = (slug,data) => {
+    return put( `/api/articles/${slug}`, data )
+}
+
+//删除文章
+export const deleteArticle = slug => {
+    return deleteMethod( `/api/articles/${slug}` )
+}
+
+//添加文章评论
+export const addComments = (slug,data)=>{
+    return post( `/api/articles/${slug}/comments`,data)
+}
+//删除文章评论
+export const deleteComments = ( slug, id ) => {
+    return deleteMethod( `/api/articles/${slug}/comments/${id}` )
+}

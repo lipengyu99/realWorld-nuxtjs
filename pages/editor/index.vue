@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { addArticle,getArticle,updateArticle } from "../../api/articles";
+import { addArticle, getArticle, updateArticle } from "../../api/articles";
 export default {
   middleware: "auth",
   data() {
@@ -68,24 +68,26 @@ export default {
       },
     };
   },
-  created(){
-    getArticle(this.$route.params.slug).then((res)=>{
-      this.article = {...this.article,...res.article}
-    })
+  created() {
+    if (this.$route.params.slug) {
+      getArticle(this.$route.params.slug).then((res) => {
+        this.article = { ...this.article, ...res.article };
+      });
+    }
   },
   methods: {
     onClicksub() {
       this.article.tagList = this.tag.split(",");
       if (this.$route.params.slug) {
-        //gengxin
-        // TODO:
         // updateArticle(this.article)
-      }else{
-          addArticle(this.article).then((res) => {
-        this.$router.push(`/article/${res.article.slug}`);
-      });
+        updateArticle(this.$route.params.slug,this.article).then((res)=>{
+          this.$router.push(`/article/${this.$route.params.slug}`)
+        })
+      } else {
+        addArticle(this.article).then((res) => {
+          this.$router.push(`/article/${res.article.slug}`);
+        });
       }
-    
     },
   },
 };
